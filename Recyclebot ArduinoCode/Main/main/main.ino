@@ -3,6 +3,7 @@
 #include <Timer.h>
 #include <AccelStepper.h>
 #include <max6675.h>
+#include <Stepper.h>
 
 //constants
 
@@ -36,6 +37,10 @@ MAX6675 thermocouple(THERMO_SCK_PIN, THERMO_CS_PIN, THERMO_SO_PIN);
 int tempControlTimer;
 int targetTemp = 10;
 
+//Cold end motor
+const int stepsPerRevolution = 200;  // change this to fit the number of steps per revolution
+// for your motor
+
 void setup() {
   // put your setup code here, to run once:
   //fans
@@ -68,6 +73,12 @@ void setup() {
 //  digitalWrite(thermo_gnd_pin, LOW);
 
   tempControlTimer = t.every(5000, TempControl);
+
+  //Spooling
+  // set the speed at 60 rpm:
+  ColdStepper.setSpeed(60);
+  // initialize the serial port:
+  Serial.begin(9600);
 }
 
 int temp;
@@ -82,6 +93,8 @@ void loop() {
   auger.runSpeed();
   t.update();
   
+  // step one revolution  in one direction:
+  ColdStepper.step(stepsPerRevolution);
   
 }
 
