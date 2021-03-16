@@ -7,7 +7,7 @@
 
 #define AUGER_STEP_PIN A0
 #define AUGER_DIR_PIN A1
-#define AUGER_ENABLE_PIN  38
+#define AUGER_ENABLE_PIN 38
 
 AccelStepper auger(1, AUGER_STEP_PIN, AUGER_DIR_PIN);
 Timer t;

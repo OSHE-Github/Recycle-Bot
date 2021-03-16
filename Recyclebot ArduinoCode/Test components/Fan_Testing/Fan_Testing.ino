@@ -1,5 +1,5 @@
-/ constants won't change
-const int RELAY_PIN = A5;  // the Arduino pin, which connects to the IN pin of relay
+// constants won't change
+const int RELAY_PIN = 10;  // the Arduino pin, which connects to the IN pin of relay
 
 // the setup function runs once when you press reset or power the board
 void setup() {
